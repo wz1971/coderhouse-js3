@@ -90,6 +90,7 @@ function agregarAlCarrito(e) {
       nombre: productoAgregado.nombre,
       precio: productoAgregado.precio,
       unidades: 1,
+      subtotal: productoAgregado.precio
     })
   }
   // Guardar como JSON en localStorage
@@ -145,7 +146,7 @@ function autenticarUsuario() {
       let password = localStorage.getItem("password")
       if (usuario === "walter" && password === "passwd") {
         localStorage.setItem("autenticado", true)
-        niceAlert("Bienvenido " + usuario)
+        Swal.fire("Bienvenido " + usuario)
       }
     })
 }
@@ -154,7 +155,7 @@ function renderizarCarrito() {
   let carritoGuardado = localStorage.getItem("carritoJSON")
   carritoGuardado = JSON.parse(carritoGuardado)
   if (!carritoGuardado || carritoGuardado.length === 0) {
-    niceAlert("No hay elementos en el carrito")
+    Swal.fire("No hay elementos en el carrito")
   } else {
     let workArea = document.getElementById("wrapper")
     workArea.innerHTML = ""
@@ -163,6 +164,7 @@ function renderizarCarrito() {
         <div class="carrito-body" id="carritoList">
           <h5>Carrito de Compras</h5>
           <h6>Nombre\t\tCantidad\t\tImporte</h6>
+          <button type="button" id="vaciarCarrito">Vaciar Carrito</button>
         </div>`
     workArea.appendChild(mostrarCarrito)
     let listarItem = document.getElementById("carritoList")
@@ -172,6 +174,8 @@ function renderizarCarrito() {
       linea.innerText = `${producto.nombre}: ${producto.unidades}u\t\$${producto.subtotal}`
       listarItem.appendChild(linea)
     })
+    let vaciar = document.getElementById("vaciarCarrito")
+    vaciar.addEventListener("click", vaciarCarrito)
   }
 }
 
@@ -183,14 +187,15 @@ function descontarStock() {
 function descontarDeCarrito() {}
 
 function vaciarCarrito() {
-  localStorage.setItem("carritoJSON", "")
+  localStorage.removeItem("carritoJSON")
+  recargarPagina()
 }
 
 function buscarProducto() {
   //Capturar cuadro de búsqueda
   let buscador = document.getElementById("textoBuscar").value.toLowerCase()
   if (!buscador) {
-    niceAlert("Ingrese texto a buscar")
+    Swal.fire("Ingrese algún texto para buscar")
   }
   let arrayResultados = productList.filter(
     (producto) =>
@@ -200,11 +205,6 @@ function buscarProducto() {
     arrayResultados = [...productList]
   }
   renderizarLista(arrayResultados)
-}
-
-function niceAlert(text) {
-  // Muestra alertas con Sweet Alert2
-  alert(text)
 }
 
 function finalizarCompra() {

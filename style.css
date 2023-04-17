@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  outline: none;
+}
+
+#wrapper {
+  background-color: #212529;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.carousel-item {
+  height: 100vh;
+}
+
+.carrito-body {
+  display: flex;
+  flex-direction:column;
+  text-align: center;
+  justify-content: center;
+  height: 100vh;
+  width: 50vw;
+  color: white;
+}
+
+.social-logo {
+  box-sizing: content-box;
+  height: 60px;
+  width: 60px;
+  margin: 20px;
+  padding: 20px;
+  transition: 2s ease-out; }
+  .social-logo:hover {
+    transform: scale(1.3); }
+
+footer {
+  background-color: #212529;
+  display: flex;
+  justify-content: space-evenly; }
+  footer ul li {
+    display: inline; }
+
+.tarjetaProd {
+  margin: 20px;
+  padding: 10px;
+  width: 15rem;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.contacto-items {
+  width: 80vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  color: white;
+}
+
+.contacto-items div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-around;
+}
+
+#contacto-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.ocultar {
+  display: none;
+}
